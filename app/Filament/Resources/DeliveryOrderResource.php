@@ -3,29 +3,20 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DeliveryOrderResource\Pages;
-
 use App\Filament\Resources\DeliveryOrderResource\RelationManagers\LogsRelationManager;
-
 use App\Models\DeliveryOrder;
 use App\Support\StatusColor;
-use Filament\Forms;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\RepeatableEntry;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\ViewEntry;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class DeliveryOrderResource extends Resource
 {
@@ -162,7 +153,7 @@ class DeliveryOrderResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 ...(static::getUser()->hasRole(['Super Admin', 'Admin', 'Driver'])) ? [
                     Tables\Actions\EditAction::make()
-                    ->visible(fn ($record) => optional($record->logs->last())->status === null || optional($record->logs->last())->status === 'Pending')
+                    ->visible(fn ($record) => optional($record->logs->last())->status === null || optional($record->logs->last())->status === 'Pending' || Static::getUser()->HasRole('Super Admin'))
                  ] : [],
             ])
             ->bulkActions([

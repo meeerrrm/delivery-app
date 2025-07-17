@@ -3,10 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
 use App\Models\User;
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -18,10 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class CustomerResource extends Resource
 {
@@ -71,17 +66,6 @@ class CustomerResource extends Resource
             ->columns([
                 ImageColumn::make('logo')->circular(),
                 TextColumn::make('company_name')->searchable(),
-                TextColumn::make('company_contacts')
-                    ->label('Kontak Utama')
-                    ->formatStateUsing(function ($state){
-
-                        Log::debug('Company Contacts State:', [
-                            'type' => gettype($state),
-                            'value' => $state,
-                            'is_array' => is_array($state),
-                            'is_json' => json_decode($state, true)
-                        ]);
-                    }),
                 TextColumn::make('industry'),
             ])
             ->filters([

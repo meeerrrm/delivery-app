@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class DeliveryOrderLogDaily extends ChartWidget
 {
     protected static ?string $heading = 'Daily Delivery Order Log';
-    // protected int | string | array $columnSpan = 'full';
 
     protected function getData(): array
     {
