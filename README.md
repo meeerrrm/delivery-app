@@ -15,26 +15,6 @@ Repositori ini adalah implementasi dari penelitian ilmiah berjudul **"Pembuatan 
 
 ---
 
-## 📁 Struktur Utama
-
-.
-├── app
-│   ├── Filament         # Panel Admin (Admin, Customer, Driver)
-│   ├── Http\Controllers # Controller Laravel
-│   ├── Models           # Model Eloquent (Customer, DO, Truck, dsb)
-│   ├── Providers        # Service & Panel Provider
-│   └── Support          # Utility seperti StatusColor
-├── config
-├── database
-├── public
-├── resources
-├── routes
-├── storage
-├── tests
-└── vendor
-
----
-
 ## ✨ Fitur Unggulan
 
 - ✅ Manajemen **Customer**, **Truck**, **Truck Type**, dan **Delivery Order**
